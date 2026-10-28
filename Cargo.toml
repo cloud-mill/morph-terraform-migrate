@@ -1,0 +1,30 @@
+# Turns what Terraform knows about existing infrastructure into tables, rows
+# and a configuration for the Morph PostgreSQL controller.
+[package]
+name = "morph-terraform-migrate"
+description = "Migrates resources managed by Terraform into tables and rows for the Morph PostgreSQL controller"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+thiserror = "2"
+toml = "0.9"
+
+[dev-dependencies]
+morph-postgres-controller = { path = "../morph-postgres-controller" }
+morph-controller-core = { path = "../morph-postgres-controller/crates/morph-controller-core" }
+morph = { path = "../morph/crates/morph" }
+tokio = { version = "1", features = ["full"] }
+tokio-postgres = { version = "0.7", features = ["with-serde_json-1"] }
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
